@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="img/favicon.png">
-    <title>SATES &mdash; </title>
+    <title>Nomina Rinku &mdash; </title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link href="Content/styles.css?v=1.2" rel="stylesheet" />
@@ -23,7 +23,7 @@
             <div id="sidebar" class="col-lg-2 col-md-2 col-xs-2">
                 <a class="main-logo-icon" href="default.aspx">Logo</a>
                 <h2 class="title">--</h2>
-                <h3 class="subtitle">SATES</h3>
+                <h3 class="subtitle">Rinku</h3>
 
                 <nav>
                     <ul class="sidebar-nav">
