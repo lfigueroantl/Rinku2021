@@ -26,5 +26,6 @@ namespace DAL
         }
     
         public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

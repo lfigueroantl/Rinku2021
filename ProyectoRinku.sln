@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoRinku", "ProyectoRinku\ProyectoRinku.csproj", "{B1B030F5-F03B-47F3-8DE7-69FA04B3E141}"
+	ProjectSection(ProjectDependencies) = postProject
+		{57EF841D-29B8-4C4C-8459-5F8972215E9D} = {57EF841D-29B8-4C4C-8459-5F8972215E9D}
+		{B72615EC-2D6C-4E1F-870B-763F5542FF21} = {B72615EC-2D6C-4E1F-870B-763F5542FF21}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{1600E6D0-7F5C-45ED-A72C-266EA22537A1}"
 EndProject

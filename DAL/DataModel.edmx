@@ -19,7 +19,16 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
           <Property Name="Rol" Type="tinyint" Nullable="false" />
           <Property Name="Tipo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="DB_RinkuModelStoreContainer">
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Empleado].[Numero] AS [Numero], 
@@ -35,6 +44,7 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
       <Schema Namespace="DB_RinkuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DB_RinkuEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Empleado" EntityType="DB_RinkuModel.Empleado" />
+          <EntitySet Name="Usuario" EntityType="DB_RinkuModel.Usuario" />
         </EntityContainer>
         <EntityType Name="Empleado">
           <Key>
@@ -47,6 +57,14 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Rol" Type="Byte" Nullable="false" />
           <Property Name="Tipo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -61,6 +79,15 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
                 <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="DB_RinkuModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
