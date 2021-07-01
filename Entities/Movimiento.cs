@@ -7,15 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Movimiento
     {
-        public short Codigo { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Contraseña { get; set; }
+        public int Codigo { get; set; }
+        public int NumeroEmpleado { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public bool CubrioTurno { get; set; }
+        public byte CantidadEntregas { get; set; }
     }
 }

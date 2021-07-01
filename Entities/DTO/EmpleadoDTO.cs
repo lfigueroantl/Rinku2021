@@ -8,5 +8,6 @@ namespace Entities.DTO
 {
     public class EmpleadoDTO: Empleado
     {
+        public string NombreRol { get; set; }
     }
 }

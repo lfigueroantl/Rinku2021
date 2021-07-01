@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL
+namespace Entities
 {
     using System;
     using System.Data.Entity;
@@ -25,7 +25,9 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<CatalogoRol> CatalogoRol { get; set; }
+        public virtual DbSet<Movimiento> Movimiento { get; set; }
+        public virtual DbSet<Empleado> Empleado { get; set; }
     }
 }

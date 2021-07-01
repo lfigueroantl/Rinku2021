@@ -16,7 +16,11 @@ namespace Entities
     {
         public int Numero { get; set; }
         public string Nombre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
         public byte Rol { get; set; }
-        public bool Tipo { get; set; }
+        public byte Tipo { get; set; }
+    
+        public virtual CatalogoRol CatalogoRol { get; set; }
     }
 }

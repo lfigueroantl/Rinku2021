@@ -27,7 +27,14 @@
 
                 <nav>
                     <ul class="sidebar-nav">
-                        
+                        <li>
+                            <a href="EmpleadosList.aspx">Empleados</a>
+                            <ul class="sub-list">
+                                <li>
+                                    <a class="mnu" href="EmpleadosList.aspx">Empleados</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 
@@ -185,11 +192,11 @@
 
             }
 
-            getMenu();
+          //  getMenu();
 
         });
 
-        function getMenu() {
+     /*   function getMenu() {
             $.getJSON("Handlers/ObtenerMenu.ashx", function (data) {
                 if (!data.Success) {
                     alert(datos.Message);
@@ -218,7 +225,7 @@
                     var descripcion = menuDatos[i].Descripcion;
                     var url = menuDatos[i].Url;
 
-                    if (menuDatos[i].Padre == null) {
+         /*           if (menuDatos[i].Padre == null) {
                         if (menuTmp.length > 0) {
                             menu += menuTmp + "</ul></li>";
                             menuTmp = "";
@@ -229,8 +236,8 @@
                         continue;
                     }
 
-                    menuTmp += "<li><a class='mnu' href='" + url + "'>" + descripcion + "</a></li>";
-                }
+                    menuTmp += "<li><a class='mnu' href='EmpleadoList.aspx'>Empleados</a></li>";
+                
 
                 if (menuTmp.length > 0) {
                     menu += menuTmp +
@@ -239,7 +246,7 @@
 
                 $(".sidebar-nav").append(menu);
 
-                setInterval(function () {
+            /*    setInterval(function () {
                     $.getJSON("Handlers/ObtenerMenu.ashx", function (data) {
                         if (data.Views != undefined && data.Views.length > 0) {
                             $(".redirectviews span").css("background", data.Views != "0" ? "red" : "gray").text(data.Views);
@@ -248,7 +255,7 @@
                 }, 30000);
 
             });
-        }
+        }*/
     </script>
 
 
@@ -259,6 +266,7 @@
     <script src="Scripts/select2_locale_es.js"></script>
     <script src="Scripts/jquery.validate.min.js"></script>
     <script src="Scripts/messages_es.min.js"></script>
+    <script src="Scripts/datatables.min.js"></script>
 
 
     

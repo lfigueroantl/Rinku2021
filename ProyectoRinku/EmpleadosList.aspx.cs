@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoRinku
 {
-    public partial class _default : WebBase
+    public partial class EmpleadosList : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -5,19 +5,33 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_RinkuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CatalogoRol">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="tinyint" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="Numero" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Rol" />
-            <PropertyRef Name="Tipo" />
           </Key>
           <Property Name="Numero" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Rol" Type="tinyint" Nullable="false" />
-          <Property Name="Tipo" Type="bit" Nullable="false" />
+          <Property Name="Tipo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="CubrioTurno" Type="bit" Nullable="false" />
+          <Property Name="CantidadEntregas" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -27,37 +41,42 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
           <Property Name="NombreUsuario" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Contraseña" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Empleado_CatalogoRol">
+          <End Role="CatalogoRol" Type="Self.CatalogoRol" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoRol">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_RinkuModelStoreContainer">
+          <EntitySet Name="CatalogoRol" EntityType="Self.CatalogoRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movimiento" EntityType="Self.Movimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Empleado" EntityType="Self.Empleado" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Empleado].[Numero] AS [Numero], 
-    [Empleado].[Nombre] AS [Nombre], 
-    [Empleado].[Rol] AS [Rol], 
-    [Empleado].[Tipo] AS [Tipo]
-    FROM [dbo].[Empleado] AS [Empleado]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_Empleado_CatalogoRol" Association="Self.FK_Empleado_CatalogoRol">
+            <End Role="CatalogoRol" EntitySet="CatalogoRol" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_RinkuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DB_RinkuEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Empleado" EntityType="DB_RinkuModel.Empleado" />
           <EntitySet Name="Usuario" EntityType="DB_RinkuModel.Usuario" />
+          <EntitySet Name="CatalogoRol" EntityType="DB_RinkuModel.CatalogoRol" />
+          <EntitySet Name="Movimiento" EntityType="DB_RinkuModel.Movimiento" />
+          <EntitySet Name="Empleado" EntityType="DB_RinkuModel.Empleado" />
+          <AssociationSet Name="FK_Empleado_CatalogoRol" Association="DB_RinkuModel.FK_Empleado_CatalogoRol">
+            <End Role="CatalogoRol" EntitySet="CatalogoRol" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Empleado">
-          <Key>
-            <PropertyRef Name="Numero" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Rol" />
-            <PropertyRef Name="Tipo" />
-          </Key>
-          <Property Name="Numero" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Rol" Type="Byte" Nullable="false" />
-          <Property Name="Tipo" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -66,28 +85,91 @@ warning 6002: The table/view 'DB_Rinku.dbo.Empleado' does not have a primary key
           <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="CatalogoRol">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Byte" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="DB_RinkuModel.FK_Empleado_CatalogoRol" FromRole="CatalogoRol" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CubrioTurno" Type="Boolean" Nullable="false" />
+          <Property Name="CantidadEntregas" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rol" Type="Byte" Nullable="false" />
+          <Property Name="Tipo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CatalogoRol" Relationship="DB_RinkuModel.FK_Empleado_CatalogoRol" FromRole="Empleado" ToRole="CatalogoRol" />
+        </EntityType>
+        <Association Name="FK_Empleado_CatalogoRol">
+          <End Type="DB_RinkuModel.CatalogoRol" Role="CatalogoRol" Multiplicity="1" />
+          <End Type="DB_RinkuModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoRol">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_RinkuModelStoreContainer" CdmEntityContainer="DB_RinkuEntities" >
-          <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="DB_RinkuModel.Empleado">
-              <MappingFragment StoreEntitySet="Empleado">
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="DB_RinkuModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogoRol">
+            <EntityTypeMapping TypeName="DB_RinkuModel.CatalogoRol">
+              <MappingFragment StoreEntitySet="CatalogoRol">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimiento">
+            <EntityTypeMapping TypeName="DB_RinkuModel.Movimiento">
+              <MappingFragment StoreEntitySet="Movimiento">
+                <ScalarProperty Name="CantidadEntregas" ColumnName="CantidadEntregas" />
+                <ScalarProperty Name="CubrioTurno" ColumnName="CubrioTurno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="DB_RinkuModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
