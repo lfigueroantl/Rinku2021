@@ -46,6 +46,15 @@ namespace BLL
 
         }
 
+        public void Eliminar(int numEmpleado)
+        {
+            using (var r = new Repository<Empleado>())
+            {
+                var itemSave = r.Retrieve(x => x.Numero.Equals(numEmpleado));
+                r.Delete(itemSave);
+            }
+        }
+
         public EmpleadoDTO obtenerPorNumero(int numero, Expression<Func<Empleado, EmpleadoDTO>> select)
         {
             EmpleadoDTO result = null;

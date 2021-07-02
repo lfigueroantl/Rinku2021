@@ -19,15 +19,16 @@ function FillTable() {
 
                 append +=
 
-                    "<tr>" +
+                    "<tr id='"+item.Numero+"'>" +
                         "<td>" + item.Numero + "</td>" +
                         "<td>" + item.Nombre+" "+item.ApellidoPaterno+" "+item.ApellidoMaterno + "</td>" +
-                        "<td>" + item.Tipo + "</td>" +
+                        "<td>" + item.NombreTipo + "</td>" +
                         "<td>"+item.NombreRol+"</td>"+
-                        "<td class='text-center'><a href='EmpleadosEdit.aspx?id=" + item.Numero + "' class='btn'><span class='icon icon-cog'></span></a></td>" +
+                        "<td class='text-center'><a href='EmpleadosEdit.aspx?id=" + item.Numero + "' class='btn'><span class='glyphicon glyphicon-cog'></span></a></td>" +
+                        "<td class='text-center'><a  class='btn eliminar'><span class='glyphicon glyphicon-trash'></span></a></td>" +
+
                     "</tr>";
             }
-
             $("tbody").empty().append(append);
             $('.table').DataTable({
                 "language": {
@@ -40,3 +41,30 @@ function FillTable() {
 
     ajaxRequest(param);
 }
+
+$(document).delegate(".eliminar", "click", function () {
+
+    if (confirm('Desea eliminar al empleado?')) {
+        var itemNumero = $(this).closest('tr').attr('id');
+        var param = {
+            type: "POST",
+            url: "EmpleadosEdit.aspx/Eliminar",
+            data: "{ numEmpleado:" + itemNumero + " }",
+
+            method: function (data) {
+
+                if (data.message != undefined && data.message.length > 0) {
+                    hideProcessing();
+                    errorMessage(data.message);
+                    return false;
+                }
+                successMessage("Eliminado correctamente.");
+                window.location.reload();
+            }
+        };
+
+        ajaxRequest(param);
+    } else {
+    }
+
+})

@@ -25,6 +25,8 @@
                                     <th class="text-center">Tipo</th>
                                     <th class="text-center">Rol</th>
                                     <th class="text-center col-lg-1">Editar</th>
+                                    <th class="text-center col-lg-1">Eliminar</th>
+
                                 </tr>
                             </thead>
                             <tbody id="tbody">

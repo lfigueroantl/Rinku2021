@@ -69,6 +69,7 @@ namespace ProyectoRinku.Handlers
                 ApellidoPaterno =x.ApellidoPaterno,
                 ApellidoMaterno = x.ApellidoMaterno,
                 Tipo = x.Tipo,
+                NombreTipo = x.Tipo==1?"Interno":"Externo",
                 NombreRol =x.CatalogoRol.Descripcion });
 
             context.Response.ContentType = "application/json";

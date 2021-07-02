@@ -55,8 +55,8 @@ $(document).ready(function () {
             $("#txtNombre").val(data.Nombre);
             $("#txtApellidoP").val(data.ApellidoPaterno);
             $("#txtApellidoM").val(data.ApellidoMaterno);
-            $("#cboTipo").val(data.Tipo);
-            $("#cboRol").val(data.Rol);
+            $("#cboTipo").val(data.Tipo).trigger("change");
+            $("#cboRol").val(data.Rol).trigger("change");
 
         },
         unblockMessage: true

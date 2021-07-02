@@ -36,5 +36,24 @@ namespace ProyectoRinku
 
             return JsonConvert.SerializeObject(message);
         }
+
+        [WebMethod]
+        public static string Eliminar(int numEmpleado)
+        {
+            var classEmpleado = new Empleados();
+
+            var message = "";
+
+            try
+            {
+                classEmpleado.Eliminar(numEmpleado);
+            }
+            catch (Exception ex)
+            {
+                message = "Ocurrió un error, intente de nuevo";
+            }
+
+            return JsonConvert.SerializeObject(message);
+        }
     }
 }
