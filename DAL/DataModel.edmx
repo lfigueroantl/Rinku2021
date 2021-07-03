@@ -11,6 +11,9 @@
           </Key>
           <Property Name="Codigo" Type="tinyint" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Horas" Type="tinyint" Nullable="false" />
+          <Property Name="SueldoBase" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Bono" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -27,7 +30,7 @@
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumeroEmpleado" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="CubrioTurno" Type="bit" Nullable="false" />
@@ -53,6 +56,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Movimiento_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Movimiento" Type="Self.Movimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="Movimiento">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_RinkuModelStoreContainer">
           <EntitySet Name="CatalogoRol" EntityType="Self.CatalogoRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
@@ -62,6 +77,10 @@
             <End Role="CatalogoRol" EntitySet="CatalogoRol" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
+          <AssociationSet Name="FK_Movimiento_Empleado" Association="Self.FK_Movimiento_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Movimiento" EntitySet="Movimiento" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -70,11 +89,15 @@
         <EntityContainer Name="DB_RinkuEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Usuario" EntityType="DB_RinkuModel.Usuario" />
           <EntitySet Name="CatalogoRol" EntityType="DB_RinkuModel.CatalogoRol" />
-          <EntitySet Name="Movimiento" EntityType="DB_RinkuModel.Movimiento" />
           <EntitySet Name="Empleado" EntityType="DB_RinkuModel.Empleado" />
           <AssociationSet Name="FK_Empleado_CatalogoRol" Association="DB_RinkuModel.FK_Empleado_CatalogoRol">
             <End Role="CatalogoRol" EntitySet="CatalogoRol" />
             <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <EntitySet Name="Movimiento" EntityType="DB_RinkuModel.Movimiento" />
+          <AssociationSet Name="FK_Movimiento_Empleado" Association="DB_RinkuModel.FK_Movimiento_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Movimiento" EntitySet="Movimiento" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Usuario">
@@ -92,16 +115,9 @@
           <Property Name="Codigo" Type="Byte" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empleado" Relationship="DB_RinkuModel.FK_Empleado_CatalogoRol" FromRole="CatalogoRol" ToRole="Empleado" />
-        </EntityType>
-        <EntityType Name="Movimiento">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CubrioTurno" Type="Boolean" Nullable="false" />
-          <Property Name="CantidadEntregas" Type="Byte" Nullable="false" />
+          <Property Name="Horas" Type="Byte" Nullable="false" />
+          <Property Name="SueldoBase" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Bono" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -114,6 +130,7 @@
           <Property Name="Rol" Type="Byte" Nullable="false" />
           <Property Name="Tipo" Type="Byte" Nullable="false" />
           <NavigationProperty Name="CatalogoRol" Relationship="DB_RinkuModel.FK_Empleado_CatalogoRol" FromRole="Empleado" ToRole="CatalogoRol" />
+          <NavigationProperty Name="Movimiento" Relationship="DB_RinkuModel.FK_Movimiento_Empleado" FromRole="Empleado" ToRole="Movimiento" />
         </EntityType>
         <Association Name="FK_Empleado_CatalogoRol">
           <End Type="DB_RinkuModel.CatalogoRol" Role="CatalogoRol" Multiplicity="1" />
@@ -124,6 +141,29 @@
             </Principal>
             <Dependent Role="Empleado">
               <PropertyRef Name="Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Movimiento">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CubrioTurno" Type="Boolean" Nullable="false" />
+          <Property Name="CantidadEntregas" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="DB_RinkuModel.FK_Movimiento_Empleado" FromRole="Movimiento" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK_Movimiento_Empleado">
+          <End Type="DB_RinkuModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="DB_RinkuModel.Movimiento" Role="Movimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="Movimiento">
+              <PropertyRef Name="NumeroEmpleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,18 +185,10 @@
           <EntitySetMapping Name="CatalogoRol">
             <EntityTypeMapping TypeName="DB_RinkuModel.CatalogoRol">
               <MappingFragment StoreEntitySet="CatalogoRol">
+                <ScalarProperty Name="Bono" ColumnName="Bono" />
+                <ScalarProperty Name="SueldoBase" ColumnName="SueldoBase" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Movimiento">
-            <EntityTypeMapping TypeName="DB_RinkuModel.Movimiento">
-              <MappingFragment StoreEntitySet="Movimiento">
-                <ScalarProperty Name="CantidadEntregas" ColumnName="CantidadEntregas" />
-                <ScalarProperty Name="CubrioTurno" ColumnName="CubrioTurno" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -170,6 +202,17 @@
                 <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movimiento">
+            <EntityTypeMapping TypeName="DB_RinkuModel.Movimiento">
+              <MappingFragment StoreEntitySet="Movimiento">
+                <ScalarProperty Name="CantidadEntregas" ColumnName="CantidadEntregas" />
+                <ScalarProperty Name="CubrioTurno" ColumnName="CubrioTurno" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

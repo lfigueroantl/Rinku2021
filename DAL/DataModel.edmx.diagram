@@ -7,9 +7,10 @@
       <Diagram DiagramId="26993dec9bd74a9eb823803b425f50b4" Name="Diagram1" >
         <EntityTypeShape EntityType="DB_RinkuModel.Usuario" Width="1.5" PointX="0.5" PointY="4.375" />
         <EntityTypeShape EntityType="DB_RinkuModel.CatalogoRol" Width="1.5" PointX="3.75" PointY="1.375" />
-        <EntityTypeShape EntityType="DB_RinkuModel.Movimiento" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_RinkuModel.Empleado" Width="1.5" PointX="6" PointY="1" />
         <AssociationConnector Association="DB_RinkuModel.FK_Empleado_CatalogoRol" />
+        <EntityTypeShape EntityType="DB_RinkuModel.Movimiento" Width="1.5" PointX="8.25" PointY="1.25" />
+        <AssociationConnector Association="DB_RinkuModel.FK_Movimiento_Empleado" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

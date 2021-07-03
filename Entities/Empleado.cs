@@ -14,6 +14,12 @@ namespace Entities
     
     public partial class Empleado
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Empleado()
+        {
+            this.Movimiento = new HashSet<Movimiento>();
+        }
+    
         public int Numero { get; set; }
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
@@ -22,5 +28,7 @@ namespace Entities
         public byte Tipo { get; set; }
     
         public virtual CatalogoRol CatalogoRol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movimiento> Movimiento { get; set; }
     }
 }

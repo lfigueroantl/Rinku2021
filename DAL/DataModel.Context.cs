@@ -27,7 +27,7 @@ namespace Entities
     
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<CatalogoRol> CatalogoRol { get; set; }
-        public virtual DbSet<Movimiento> Movimiento { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<Movimiento> Movimiento { get; set; }
     }
 }

@@ -22,6 +22,9 @@ namespace Entities
     
         public byte Codigo { get; set; }
         public string Descripcion { get; set; }
+        public byte Horas { get; set; }
+        public string SueldoBase { get; set; }
+        public byte Bono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empleado> Empleado { get; set; }

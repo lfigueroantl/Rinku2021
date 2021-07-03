@@ -33,6 +33,9 @@
                                 <li>
                                     <a class="mnu" href="EmpleadosList.aspx">Empleados</a>
                                 </li>
+                                <li>
+                                    <a class="mnu" href="MovimientoList.aspx">Movimientos</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

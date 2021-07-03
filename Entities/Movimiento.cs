@@ -19,5 +19,7 @@ namespace Entities
         public System.DateTime Fecha { get; set; }
         public bool CubrioTurno { get; set; }
         public byte CantidadEntregas { get; set; }
+    
+        public virtual Empleado Empleado { get; set; }
     }
 }

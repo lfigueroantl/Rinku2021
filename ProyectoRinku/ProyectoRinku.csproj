@@ -164,6 +164,8 @@
     <Content Include="EmpleadosEdit.aspx" />
     <Content Include="EmpleadosList.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MovimientoList.aspx" />
+    <Content Include="MovimientosEdit.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -207,12 +209,15 @@
     <Content Include="Content\font\Roboto-Thin.woff" />
     <Content Include="Content\font\Roboto-Thin.woff2" />
     <Content Include="Content\styles.css.map" />
+    <Content Include="Handlers\MovimientoHandler.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\ScriptForm\EmpleadosEdit.js" />
+    <Content Include="Scripts\ScriptForm\MovimientosEdit.js" />
+    <Content Include="Scripts\ScriptForm\MovimientosList.js" />
     <Content Include="Scripts\Spanish.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -287,6 +292,9 @@
     <Compile Include="Handlers\EmpleadoHandler.ashx.cs">
       <DependentUpon>EmpleadoHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\MovimientoHandler.ashx.cs">
+      <DependentUpon>MovimientoHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +308,20 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MovimientoList.aspx.cs">
+      <DependentUpon>MovimientoList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovimientoList.aspx.designer.cs">
+      <DependentUpon>MovimientoList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovimientosEdit.aspx.cs">
+      <DependentUpon>MovimientosEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovimientosEdit.aspx.designer.cs">
+      <DependentUpon>MovimientosEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -341,7 +363,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1036</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1035/</IISUrl>
+          <IISUrl>http://localhost:1036/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
