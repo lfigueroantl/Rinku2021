@@ -162,6 +162,8 @@
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\styles.css" />
     <Content Include="default.aspx" />
+    <Content Include="Documentacion\DiagramaSecuenciaRinku.jpg" />
+    <Content Include="Documentacion\umlrinku.png" />
     <Content Include="EmpleadosEdit.aspx" />
     <Content Include="EmpleadosList.aspx" />
     <Content Include="Login.aspx" />
@@ -211,6 +213,7 @@
     <Content Include="Content\font\Roboto-Thin.woff2" />
     <Content Include="Content\styles.css.map" />
     <Content Include="Handlers\MovimientoHandler.ashx" />
+    <Content Include="Documentacion\RequerimientosRinku.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

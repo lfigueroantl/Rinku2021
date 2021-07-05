@@ -105,14 +105,17 @@ $("#btnGuardar").on("click", function () {
     }
 
     showProcessing("Guardando...");
-
+    var rolcubrio = 0;
+    if($("#cboCubrio").val()!=null && $("#cboCubrio").val()!=""){
+        rolcubrio = $("#cboCubrio").val();
+    }
     var item = {
         Codigo: id,
         NumeroEmpleado: $("#cboEmpleado").val(),
         Fecha: $("#txtFecha").val(),
         CubrioTurno:  $("#chkCubrio").is(":checked"),
         CantidadEntregas: $("#txtCantidadEntregas").val(),
-        RolCubrio: $("#cboCubrio").val()==null?0:$("#cboCubrio").val()
+        RolCubrio: rolcubrio
     };
 
     var param = {

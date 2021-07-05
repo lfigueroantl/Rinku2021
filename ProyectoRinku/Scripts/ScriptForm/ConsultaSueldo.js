@@ -63,12 +63,12 @@ $("#btnConsultar").on("click", function () {
                     "<tr>" +
                         "<td>" + data.diasTrabajados + "</td>" +
                         "<td>" + data.totalEntregas+ "</td>" +
-                        "<td>" + data.sueldoBase+ "</td>" +
-                        "<td>" + data.extraEntregas + "</td>" +
-                        "<td>" + data.bonoPorHoras + "</td>" +
-                        "<td>" + data.ISR + "</td>" +
-                        "<td>" + data.valesDespensa + "</td>" +
-                        "<td>" + data.sueldoNeto + "</td>" +
+                        "<td>$" + data.sueldoBase+ "</td>" +
+                        "<td>$" + data.extraEntregas + "</td>" +
+                        "<td>$" + data.bonoPorHoras + "</td>" +
+                        "<td>$" + data.ISR.toFixed(2) + "</td>" +
+                        "<td>$" + data.valesDespensa.toFixed(2) + "</td>" +
+                        "<td>$" + data.sueldoNeto.toFixed(2) + "</td>" +
                     "</tr>";
             
             $("tbody").empty().append(append);

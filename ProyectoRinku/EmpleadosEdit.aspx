@@ -16,7 +16,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Número de empleado <span class="required"></span></label>
-                                <input type="text" id="txtNumero" name="txtNumero" class="form-control" maxlength="8" required />
+                                <input type="number" id="txtNumero" name="txtNumero" class="form-control" max="99999999" min="1" required />
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Rol<span class="required"></span></label>
-                                <select class="form-control" id="cboRol" name="cboTipo" required>
+                                <select class="form-control" id="cboRol" name="cboRol" required>
                                     <option value="">SELECCIONE...</option>
                                     <option value="1">Chofer</option>
                                     <option value="2">Auxiliar</option>

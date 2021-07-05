@@ -118,7 +118,7 @@ namespace ProyectoRinku.Handlers
                 CubrioTurno = x.CubrioTurno,
                 CantidadEntregas = x.CantidadEntregas,
                 RolCubrio = x.RolCubrio
-            }).Where(x=> x.Fecha.Month == mes && x.Fecha.Year == año);
+            }).Where(x=> x.Fecha.Month == mes && x.Fecha.Year == año && x.NumeroEmpleado == numeroempleado);
 
             foreach (var movimiento in Movimientos)
             {
