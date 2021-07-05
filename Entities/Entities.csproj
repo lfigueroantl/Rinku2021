@@ -58,7 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoImpuesto.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CatalogoRol.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogoTipoEmpleado.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModel.Context.cs">
@@ -71,6 +77,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\CatalogoImpuestoDTO.cs" />
+    <Compile Include="DTO\CatalogoRolDTO.cs" />
     <Compile Include="DTO\EmpleadoDTO.cs" />
     <Compile Include="DTO\MovimientoDTO.cs" />
     <Compile Include="Empleado.cs">

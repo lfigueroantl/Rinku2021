@@ -66,6 +66,7 @@ namespace BLL
 
             return result;
         }
+
         public List<EmpleadoDTO> Filter(Expression<Func<Empleado, EmpleadoDTO>> select)
         {
             var result = new List<EmpleadoDTO>();
@@ -73,6 +74,18 @@ namespace BLL
             using (var r = new Repository<Empleado>())
             {
                 result = r.Filter(select);
+            }
+
+            return result;
+        }
+
+        public CatalogoRolDTO obtenerRolPorCodigo(byte codigo, Expression<Func<CatalogoRol, CatalogoRolDTO>> select)
+        {
+            CatalogoRolDTO result = null;
+
+            using (var r = new Repository<CatalogoRol>())
+            {
+                result = r.Retrieve(x => x.Codigo == codigo, select);
             }
 
             return result;

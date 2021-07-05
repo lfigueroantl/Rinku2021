@@ -15,8 +15,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label>Número de empleado <span class="required"></span></label>
-                                <input type="text" id="txtNumero" name="txtNumero" class="form-control" maxlength="8" required />
+                                <label>Empleado <span class="required"></span></label>
+                                <select class="form-control" id="cboEmpleado" name="cboEmpleado"></select>
                             </div>
                         </div>
                     </div>
@@ -36,10 +36,21 @@
                                 <input type="number" class="form-control" id="txtCantidadEntregas" name="txtCantidadEntregas" required/>
                             </div>
                         </div>
-                                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label>Cubrio turno<span class="required"></span></label>
-                                <input type="checkbox" class="form-control" id="chkCubrio" name="chkCubrio" required/>
+                <br />
+                        <div class="col-lg-12">
+                            <div style="display:none" id="divChkCubrio" class="pull-left">
+                                <input type="checkbox" id="chkCubrio" />
+                                <label for="chkCubrio">Cubrio turno</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div style="display:none" id="divCboCubrio" class="form-group">
+                                <label>Rol a cubrir <span class="required"></span></label>
+                                <select class="form-control" id="cboCubrio" name="cboCubrio">
+                                    <option value="">SELECCIONE...</option>
+                                    <option value="1">Chofer</option>
+                                    <option value="3">Cargador</option>
+                                </select>
                             </div>
                         </div>
             </div>

@@ -10,5 +10,11 @@ namespace Entities.DTO
     {
         public string NombreRol { get; set; }
         public string NombreTipo { get; set; }
+        public bool PuedeCubrir { get; set; }
+        public byte BonoRol { get; set; }
+        public byte BaseRol { get; set; }
+        public byte HorasRol { get; set; }
+        public byte ExtraPorEntregas { get; set; }
+        public byte PorcValeDespensa { get; set; }
     }
 }

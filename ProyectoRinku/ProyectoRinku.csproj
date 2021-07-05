@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="assets\login_background.jpg" />
     <Content Include="CerrarSesion.aspx" />
+    <Content Include="ConsultaSueldo.aspx" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
@@ -215,6 +216,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Scripts\ScriptForm\ConsultaSueldo.js" />
     <Content Include="Scripts\ScriptForm\EmpleadosEdit.js" />
     <Content Include="Scripts\ScriptForm\MovimientosEdit.js" />
     <Content Include="Scripts\ScriptForm\MovimientosList.js" />
@@ -267,6 +269,13 @@
     </Compile>
     <Compile Include="CerrarSesion.aspx.designer.cs">
       <DependentUpon>CerrarSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaSueldo.aspx.cs">
+      <DependentUpon>ConsultaSueldo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaSueldo.aspx.designer.cs">
+      <DependentUpon>ConsultaSueldo.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

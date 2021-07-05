@@ -12,15 +12,11 @@ namespace Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Movimiento
+    public partial class CatalogoImpuesto
     {
-        public int Codigo { get; set; }
-        public int NumeroEmpleado { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public bool CubrioTurno { get; set; }
-        public byte CantidadEntregas { get; set; }
-        public byte RolCubrio { get; set; }
-    
-        public virtual Empleado Empleado { get; set; }
+        public byte Codigo { get; set; }
+        public byte ISRNormal { get; set; }
+        public byte ISRExtra { get; set; }
+        public int TopeSalario { get; set; }
     }
 }

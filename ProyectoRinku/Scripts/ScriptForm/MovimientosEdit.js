@@ -38,28 +38,48 @@ $(document).ready(function () {
     if (id === undefined) {
         id = 0;
     }
-    if (id == 0) {
-        id = 0;
-        hideProcessing();
-        return false;
-    }
 
 
-    var param2 = {
+    var param = {
         type: "GET",
-        url: "Handlers/MovimientoHandler.ashx",
-        data: { method: "ObtenerMovimiento", args: { codigo: id } },
+        url: "Handlers/EmpleadoHandler.ashx",
+        data: { method: "ObtenerComboEmpleados" },
         method: function (data) {
+            var cboEmpleado = $("#cboEmpleado");
 
-            $("#txtNumero").val(data.NumeroEmpleado);
-            $("#txtFecha").val(data.Fecha);
-            $("#chkCubrio").prop("checked", data.CubrioTurno);
-            $("#txtCantidadEntregas").val(data.CantidadEntregas);
+            LoadSelects(cboEmpleado, data.Combo, true);
+
+            cboEmpleado.select2("val", "");
+
+            if (id == 0) {
+                id = 0;
+                hideProcessing();
+                return false;
+            }
+            var param2 = {
+                type: "GET",
+                url: "Handlers/MovimientoHandler.ashx",
+                data: { method: "ObtenerMovimiento", args: { codigo: id } },
+                method: function (data) {
+
+                    $("#cboEmpleado").val(data.NumeroEmpleado).trigger("change");
+                    $("#txtFecha").val(data.Fecha);
+                    $("#chkCubrio").prop("checked", data.CubrioTurno).trigger("change");
+                    $("#txtCantidadEntregas").val(data.CantidadEntregas);
+                    $("#cboCubrio").val(data.RolCubrio).trigger("change");
+
+                },
+                unblockMessage: true
+            };
+
+            ajaxRequest(param2);
         },
         unblockMessage: true
     };
 
-    ajaxRequest(param2);
+    ajaxRequest(param);
+
+
 });
 $("#btnGuardar").on("click", function () {
 
@@ -87,10 +107,12 @@ $("#btnGuardar").on("click", function () {
     showProcessing("Guardando...");
 
     var item = {
-        NumeroEmpleado: $("#txtNumero").val(),
+        Codigo: id,
+        NumeroEmpleado: $("#cboEmpleado").val(),
         Fecha: $("#txtFecha").val(),
         CubrioTurno:  $("#chkCubrio").is(":checked"),
-        CantidadEntregas: $("#txtCantidadEntregas").val()
+        CantidadEntregas: $("#txtCantidadEntregas").val(),
+        RolCubrio: $("#cboCubrio").val()==null?0:$("#cboCubrio").val()
     };
 
     var param = {
@@ -109,6 +131,7 @@ $("#btnGuardar").on("click", function () {
             LimpiarControles();
 
             successMessage();
+
         }
     };
 
@@ -129,3 +152,30 @@ function LimpiarControles() {
     $(".error").css("display", "none");
     $(".message .error").css("display", "none");
 }
+
+$("#cboEmpleado").on("change", function () {
+    var numero = $(this).val();
+    var param = {
+        type: "GET",
+        url: "Handlers/EmpleadoHandler.ashx",
+        data: { method: "ObtenerEmpleado", args: { numero: numero } },
+        method: function (data) {
+
+            if (data.PuedeCubrir) {
+                $("#divChkCubrio").show();
+            } else {
+                $("#divChkCubrio").hide();
+            }
+        },
+        unblockMessage: true
+    };
+
+    ajaxRequest(param);
+});
+$("#chkCubrio").on("change", function () {
+    if ($(this).is(":checked")) {
+        $("#divCboCubrio").show();
+    } else {
+        $("#divCboCubrio").hide();
+    }
+})

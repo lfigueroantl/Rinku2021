@@ -30,6 +30,7 @@ namespace BLL
                 itemSave.Fecha = item.Fecha;
                 itemSave.CubrioTurno = item.CubrioTurno;
                 itemSave.CantidadEntregas = item.CantidadEntregas;
+                itemSave.RolCubrio = item.RolCubrio;
 
                 if (isNew)
                 {
@@ -70,6 +71,17 @@ namespace BLL
             using (var r = new Repository<Movimiento>())
             {
                 result = r.Filter(select);
+            }
+
+            return result;
+        }
+        public CatalogoImpuestoDTO obtenerISR(Expression<Func<CatalogoImpuesto, CatalogoImpuestoDTO>> select)
+        {
+            CatalogoImpuestoDTO result = null;
+
+            using (var r = new Repository<CatalogoImpuesto>())
+            {
+                result = r.Retrieve(x => x.Codigo == 1, select);
             }
 
             return result;

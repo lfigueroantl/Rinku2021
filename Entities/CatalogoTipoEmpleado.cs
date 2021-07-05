@@ -12,24 +12,19 @@ namespace Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleado
+    public partial class CatalogoTipoEmpleado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empleado()
+        public CatalogoTipoEmpleado()
         {
-            this.Movimiento = new HashSet<Movimiento>();
+            this.Empleado = new HashSet<Empleado>();
         }
     
-        public int Numero { get; set; }
-        public string Nombre { get; set; }
-        public string ApellidoPaterno { get; set; }
-        public string ApellidoMaterno { get; set; }
-        public byte Rol { get; set; }
-        public byte Tipo { get; set; }
+        public byte Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public byte DespensaPorc { get; set; }
     
-        public virtual CatalogoTipoEmpleado CatalogoTipoEmpleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movimiento> Movimiento { get; set; }
-        public virtual CatalogoRol CatalogoRol { get; set; }
+        public virtual ICollection<Empleado> Empleado { get; set; }
     }
 }

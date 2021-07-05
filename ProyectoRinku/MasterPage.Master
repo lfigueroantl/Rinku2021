@@ -38,6 +38,15 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">Consultas</a>
+                            <ul class="sub-list">
+                                <li>
+                                    <a class="mnu" href="ConsultaSueldo.aspx">Consulta sueldo mensual</a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 
