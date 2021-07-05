@@ -21,6 +21,7 @@ function FillTable() {
 
                     "<tr id='" + item.Codigo + "'>" +
                         "<td>" + item.NumeroEmpleado + "</td>" +
+                        "<td>" + item.NombreEmpleado+ "</td>" +
                         "<td>" + item.Fecha + "</td>" +
                         "<td>" + item.CantidadEntregas + "</td>" +
                         "<td>" + item.CubrioTurno + "</td>" +

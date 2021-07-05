@@ -13,7 +13,7 @@
                     <h2>Nuevo Empleado</h2>
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Número de empleado <span class="required"></span></label>
                                 <input type="number" id="txtNumero" name="txtNumero" class="form-control" max="99999999" min="1" required />
@@ -48,7 +48,7 @@
                 </div>
 
                 <hr class="breakline" />
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <label>Tipo<span class="required"></span></label>
                                 <select class="form-control" id="cboTipo" name="cboTipo" required>
@@ -58,7 +58,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <label>Rol<span class="required"></span></label>
                                 <select class="form-control" id="cboRol" name="cboRol" required>

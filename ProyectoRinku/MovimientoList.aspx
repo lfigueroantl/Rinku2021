@@ -20,7 +20,8 @@
                         <table id="dataTable" class="display table table-bordered datagrid">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Número de empleado</th>
+                                    <th class="text-center col-lg-1">Número de empleado</th>
+                                    <th class="text-center">Nombre</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Entregas</th>
                                     <th class="text-center">Cubrio Turno</th>

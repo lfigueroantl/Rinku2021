@@ -24,13 +24,13 @@
                 </div>
 
                 <hr class="breakline" />
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                             <div class="form-group">
                                 <label>Fecha<span class="required"></span></label>
                                 <input type="date" class="form-control" id="txtFecha" name="txtFecha" required/>
                             </div>
                         </div>
-                         <div class="col-lg-4">
+                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label>Cantidad de entregas<span class="required"></span></label>
                                 <input type="number" class="form-control" id="txtCantidadEntregas" name="txtCantidadEntregas" max="255" min="1" required/>

@@ -8,5 +8,6 @@ namespace Entities.DTO
 {
     public class MovimientoDTO: Movimiento
     {
+        public string NombreEmpleado { get; set; }
     }
 }

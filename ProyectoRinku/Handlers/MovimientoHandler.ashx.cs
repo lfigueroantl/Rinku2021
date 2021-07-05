@@ -74,6 +74,7 @@ namespace ProyectoRinku.Handlers
                 NumeroEmpleado = x.NumeroEmpleado,
                 Fecha = x.Fecha,
                 CubrioTurno = x.CubrioTurno,
+                NombreEmpleado = x.Empleado.Nombre+" "+x.Empleado.ApellidoPaterno+" "+x.Empleado.ApellidoMaterno,
                 CantidadEntregas = x.CantidadEntregas
             });
 
@@ -86,7 +87,8 @@ namespace ProyectoRinku.Handlers
                     x.NumeroEmpleado,
                     Fecha = x.Fecha.ToString("dd-MM-yyyy"),
                     CubrioTurno= x.CubrioTurno?"Si":"No",
-                    x.CantidadEntregas
+                    x.CantidadEntregas,
+                    x.NombreEmpleado
                 })
             }));
         }
